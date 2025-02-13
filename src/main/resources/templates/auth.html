@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You are authenticated</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<th:block th:replace="layout/header :: header"></th:block>
+
+<main class="container mx-auto mt-8">
+    <h2 class="text-2xl mb-4">You are authenticated</h2>
+    <a th:href="@{'/helloworld?name=' + ${username}}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Hello, <span th:text="${username}"></span>
+    </a>
+</main>
+
+</body>
+</html>
