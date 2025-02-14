@@ -17,7 +17,7 @@ public class HelloWorldController {
      *
      * @param name  optional to say Hello <name>
      * @param model provide data to the html
-     * @return
+     * @return helloworld.html
      */
     @GetMapping("/helloworld")
     public String HelloWorld(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {

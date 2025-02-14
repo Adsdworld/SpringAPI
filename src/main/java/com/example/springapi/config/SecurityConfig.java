@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
- * SecurityConfig that configure protected path or not
+ * SecurityConfig to configure protected path or not
  */
 @Configuration
 public class SecurityConfig {
@@ -18,11 +18,11 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/register", "/login", "/helloworld").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/register", "/login", "/helloworld").permitAll() // allow paths
+                .anyRequest().authenticated() // any other path require to be authenticated
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login") // default post handle with params : 'username' and 'password'
                 .defaultSuccessUrl("/auth", true)
                 .permitAll()
                 .and()

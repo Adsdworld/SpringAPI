@@ -24,7 +24,7 @@ public class LoginController {
             return "redirect:/auth";
         }
 
-        // render register if user is not authenticated
+        // render login if user is not authenticated
         return "login";
     }
 }
