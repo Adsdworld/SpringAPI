@@ -15,15 +15,20 @@
     <form action="/register" method="post" class="bg-white p-4 rounded shadow-md">
         <div class="mb-4">
             <label for="username" class="block text-gray-700">Username:</label>
-            <input type="text" id="username" name="username" class="border border-gray-300 p-2 w-full rounded" required>
+            <input type="text" id="username" name="username" placeholder="username"
+                   class="border border-gray-300 p-2 w-full rounded" required>
         </div>
         <div class="mb-4">
             <label for="password" class="block text-gray-700">Password:</label>
-            <input type="password" id="password" name="password" class="border border-gray-300 p-2 w-full rounded"
+            <input type="password" id="password" name="password" placeholder="password"
+                   class="border border-gray-300 p-2 w-full rounded"
                    required>
         </div>
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
     </form>
+    <div th:if="${error}" class="mt-4 text-red-500">
+        <p th:text="${error}"></p>
+    </div>
 </main>
 </body>
 </html>

@@ -8,8 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 
+/**
+ * Implements loadUserByUsername method
+ * This method is call to authenticate the user
+ * userRepository is used to find the user in the database
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -17,22 +21,23 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     /**
-     * Try to find user and build the user
-     * @param username
-     * @return
-     * @throws UsernameNotFoundException
+     * Load the User
+     *
+     * @param username to find in the database
+     * @return a User
+     * @throws UsernameNotFoundException if username not found
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        // try to find the user
         User user = userRepository.findByUsername(username);
+
+        // check if user
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
-        // Use the fully qualified name for Spring's User class
-        UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(user.getUsername());
-        builder.password(user.getPassword());
-        builder.roles("USER");  // Add default role
-        return builder.build();
+        return user;
     }
 }

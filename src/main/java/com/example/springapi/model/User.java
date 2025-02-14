@@ -11,17 +11,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * User is an entity
+ * User is link with userRepository <User, Long> with "users" as a table name
+ * Use the UserDetails interface
+ */
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // unique
-    private Long id;
+    private Long id; // primary Long
 
-    private String username;
-    private String password;
+    private String username; // field username
+    private String password; // field password
 
+    // Spring require a default constructor
     public User() {
     }
 

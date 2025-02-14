@@ -1,6 +1,6 @@
 package com.example.springapi.controller;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import com.example.springapi.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthController {
 
     /**
-     * This page is only accessible by authenticated users cf Security
+     * This page is only accessible by authenticated users cf SecurityConfig
      *
      * @param model render parameters
      * @return auth.html
@@ -20,7 +20,11 @@ public class AuthController {
     public String authPage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        model.addAttribute("username", authentication.getName());
+        // retrieve the User
+        User user = (User) authentication.getPrincipal();
+
+        // pass username to the html
+        model.addAttribute("username", "(id=%d) %s".formatted(user.getId(), user.getUsername()));
 
         return "auth";
     }

@@ -17,10 +17,14 @@ public class LoginController {
     @GetMapping("/login")
     public String login() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // check if user is authenticated
         if (authentication != null && authentication.isAuthenticated()
                 && !(authentication instanceof AnonymousAuthenticationToken)) {
             return "redirect:/auth";
         }
+
+        // render register if user is not authenticated
         return "login";
     }
 }

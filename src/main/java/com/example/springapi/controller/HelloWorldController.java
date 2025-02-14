@@ -14,12 +14,13 @@ public class HelloWorldController {
      * Counter increases each time the page is rendered.
      * At render, display a "<counter> hello World!" message.
      * A name parameter can be provided to say "<counter> hello <name>!"
-     * @param name
-     * @param model
+     *
+     * @param name  optional to say Hello <name>
+     * @param model provide data to the html
      * @return
      */
     @GetMapping("/helloworld")
-    public String sayHelloWorld(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
+    public String HelloWorld(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
         counter++;
         String message = String.format("%dx hello %s!", counter, name);
         model.addAttribute("message", message);
